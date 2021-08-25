@@ -3,7 +3,6 @@
 </template>
 
 <script>
-console.log('@hey');
 export default {
   name: 'v-front',
   data() {
