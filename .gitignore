@@ -36,6 +36,3 @@ Thumbs.db
 *.flv
 *.mov
 *.wmv
-
-# WP files
-wp-config.php
