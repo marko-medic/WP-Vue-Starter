@@ -3,6 +3,12 @@ import vHeader from '../../components/Header.vue';
 import vFooter from '../../components/Footer.vue';
 import { isInPage, getCurrentPage } from './misc-helpers';
 
+interface IComponentList {
+  inc: string | string[];
+  componentName: string;
+  pathName: string;
+}
+
 const sharedComponents = {
   vHeader,
   vFooter,
@@ -14,7 +20,7 @@ const nonSharedComponents = [
   { componentName: 'vForm', inc: ['home', 'about-us'], pathName: 'Form' },
 ];
 
-const getComponentsLazily = (componentList = []) => {
+const getComponentsLazily = (componentList: IComponentList[] = []) => {
   if (componentList.length === 0) {
     return {};
   }
@@ -34,7 +40,7 @@ const getComponentsLazily = (componentList = []) => {
     .reduce(async (acc, curr) => {
       const importedModule = await import(`../../components/${curr.pathName}`);
       const cmp = await importedModule.default;
-      const awaitedAcc = await acc;
+      const awaitedAcc = (await acc) as any;
       awaitedAcc[curr.componentName] = await cmp;
       return awaitedAcc;
     }, {});
