@@ -14,5 +14,3 @@ const { jQuery } = window;
 homeInit(jQuery);
 
 loadVueComponents();
-
-console.log('@ts');

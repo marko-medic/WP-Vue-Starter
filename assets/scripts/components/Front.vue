@@ -2,7 +2,7 @@
   <h1>Front page content!</h1>
 </template>
 
-<script>
+<script lang="ts">
 export default {
   name: 'v-front',
   data() {

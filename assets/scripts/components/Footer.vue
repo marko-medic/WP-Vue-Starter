@@ -2,7 +2,7 @@
   <footer>Footer content: {{ content }}</footer>
 </template>
 
-<script>
+<script lang="ts">
 export default {
   name: 'v-footer',
   props: ['content'],

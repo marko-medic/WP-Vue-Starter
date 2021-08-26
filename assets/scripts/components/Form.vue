@@ -9,19 +9,23 @@
  </div>
 </template>
 
-<script>
+<script lang="ts">
+  interface IData {
+    firstName: string;
+    lastName: string
+  }
 export default {
   name: 'v-form',
-  data() {
+  data(): IData {
     return {
       firstName: '',
       lastName: ''
     };
   },
   methods: {
-    logMessage(e) {
+    logMessage(e: Event) {
       e.preventDefault();
-      console.log('@log', this.firstName, this.lastName)
+      console.log('@log', this)
     }
   }
 };

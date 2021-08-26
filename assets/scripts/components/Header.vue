@@ -2,11 +2,15 @@
   <header>Hello {{content}} {{ title }}!</header>
 </template>
 
-<script>
+<script lang="ts">
+
+interface IData {
+  title: string
+}
 export default {
   name: 'v-header',
   props: ['content'],
-  data() {
+  data(): IData {
     return {title: "Again"};
   },
 
