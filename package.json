@@ -59,6 +59,8 @@
     "production": "mix --production"
   },
   "dependencies": {
+    "axios": "^0.21.1",
+    "lodash": "^4.17.21",
     "vue": "^2.6.14"
   }
 }
