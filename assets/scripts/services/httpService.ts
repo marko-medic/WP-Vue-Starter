@@ -1,5 +1,3 @@
-/* eslint-disable */
-
 import axios, { AxiosError } from 'axios';
 import { destroy, getSessionToken } from './sessionService';
 
