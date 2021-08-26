@@ -1,6 +1,14 @@
 <?php
 
-if ( ! function_exists( 'custom_theme_setup' ) ) :
+class Theme_Setup
+{
+	public function __construct()
+	{
+		add_action('after_setup_theme', array($this, 'setup'));
+		add_action('after_setup_theme', array($this, 'content_width'), 0);
+		add_filter('body_class', array($this, 'add_slug_body_class'));
+	}
+
 	/**
 	 * Sets up theme defaults and registers support for various WordPress features.
 	 *
@@ -8,17 +16,18 @@ if ( ! function_exists( 'custom_theme_setup' ) ) :
 	 * runs before the init hook. The init hook is too late for some features, such
 	 * as indicating support for post thumbnails.
 	 */
-	function custom_theme_setup() {
+	public function setup()
+	{
 		/*
 		 * Make theme available for translation.
 		 * Translations can be filed in the /languages/ directory.
 		 * If you're building a theme based on custom_theme, use a find and replace
 		 * to change 'custom_theme' to the name of your theme in all the template files.
 		 */
-		load_theme_textdomain( 'custom_theme', get_template_directory() . '/languages' );
+		load_theme_textdomain('custom_theme', get_template_directory() . '/languages');
 
 		// Add default posts and comments RSS feed links to head.
-		add_theme_support( 'automatic-feed-links' );
+		add_theme_support('automatic-feed-links');
 
 		/*
 		 * Let WordPress manage the document title.
@@ -26,22 +35,22 @@ if ( ! function_exists( 'custom_theme_setup' ) ) :
 		 * hard-coded <title> tag in the document head, and expect WordPress to
 		 * provide it for us.
 		 */
-		add_theme_support( 'title-tag' );
+		add_theme_support('title-tag');
 
 		/*
 		 * Enable support for Post Thumbnails on posts and pages.
 		 *
 		 * @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
 		 */
-		add_theme_support( 'post-thumbnails' );
+		add_theme_support('post-thumbnails');
 
 		// This theme uses wp_nav_menu() in one location.
 		register_nav_menus(
 			array(
-				'header'   => esc_html__( 'Primary', 'custom_theme' ),
-				'footer-1' => esc_html__( 'Footer 1', 'custom_theme' ),
-				'footer-2' => esc_html__( 'Footer 2', 'custom_theme' ),
-				'footer-3' => esc_html__( 'Footer 3', 'custom_theme' ),
+				'header'   => esc_html__('Primary', 'custom_theme'),
+				'footer-1' => esc_html__('Footer 1', 'custom_theme'),
+				'footer-2' => esc_html__('Footer 2', 'custom_theme'),
+				'footer-3' => esc_html__('Footer 3', 'custom_theme'),
 			)
 		);
 
@@ -66,7 +75,7 @@ if ( ! function_exists( 'custom_theme_setup' ) ) :
 		add_theme_support(
 			'custom-background',
 			apply_filters(
-				'custom_theme_custom_background_args',
+				'custom_background_args',
 				array(
 					'default-color' => 'ffffff',
 					'default-image' => '',
@@ -75,7 +84,7 @@ if ( ! function_exists( 'custom_theme_setup' ) ) :
 		);
 
 		// Add theme support for selective refresh for widgets.
-		add_theme_support( 'customize-selective-refresh-widgets' );
+		add_theme_support('customize-selective-refresh-widgets');
 
 		/**
 		 * Add support for core custom logo.
@@ -92,28 +101,34 @@ if ( ! function_exists( 'custom_theme_setup' ) ) :
 			)
 		);
 	}
-endif;
-add_action( 'after_setup_theme', 'custom_theme_setup' );
 
-
-/**
- * Set the content width in pixels, based on the theme's design and stylesheet.
- *
- * Priority 0 to make it available to lower priority callbacks.
- *
- * @global int $content_width
- */
-function custom_theme_content_width() {
-	$GLOBALS['content_width'] = apply_filters( 'custom_theme_content_width', 640 );
-}
-add_action( 'after_setup_theme', 'custom_theme_content_width', 0 );
-
-function custom_theme_add_slug_body_class( $classes ) {
-	global $post;
-	if ( isset( $post ) ) {
-		$classes[] = $post->post_type . '-' . $post->post_name;
+	/**
+	 * Set the content width in pixels, based on the theme's design and stylesheet.
+	 *
+	 * Priority 0 to make it available to lower priority callbacks.
+	 *
+	 * @global int $content_width
+	 */
+	public function content_width()
+	{
+		$GLOBALS['content_width'] = apply_filters('content_width', 640);
 	}
-	return $classes;
+
+
+	/**
+	 * Attach page class to the body tag
+	 *
+	 * @param array $classes
+	 */
+	public function add_slug_body_class($classes)
+	{
+		global $post;
+		if (isset($post)) {
+			$classes[] = $post->post_type . '-' . $post->post_name;
+		}
+		return $classes;
+	}
 }
 
-add_filter( 'body_class', 'custom_theme_add_slug_body_class' );
+
+new Theme_Setup();

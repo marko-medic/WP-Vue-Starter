@@ -1,5 +1,5 @@
 <template>
-  <h1>Front content</h1>
+  <h1>Front page content!</h1>
 </template>
 
 <script>
@@ -11,6 +11,4 @@ export default {
 };
 </script>
 
-<style scoped>
-</style>
-
+<style scoped></style>

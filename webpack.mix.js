@@ -25,6 +25,8 @@ const THEME_URL = `${SITE_URL}/wp-content/themes/custom_theme/`;
 mix
   .js('assets/js/app.js', 'dist/js/app.min.js')
   .vue()
+  .js('assets/js/extras/customizer.js', 'dist/js/customizer.min.js')
+  .js('assets/js/extras/navigation.js', 'dist/js/navigation.min.js')
   .sass('assets/scss/app.scss', 'style.css')
   .webpackConfig({
     plugins: [
