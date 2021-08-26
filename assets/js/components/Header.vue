@@ -9,15 +9,14 @@ export default {
   data() {
     return {};
   },
-  created() {
-    console.log('@created');
-  },
+
 };
 </script>
 
 <style scoped>
 header {
-  background-color: #eee;
+  background-color: lightblue;
+  padding: 2rem;
 }
 </style>
 
