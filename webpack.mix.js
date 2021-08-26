@@ -9,6 +9,8 @@ const SITE_URL =
     ? process.env.DEVELOPMENT_URL
     : process.env.PRODUCTION_URL;
 
+const THEME_URL = `${SITE_URL}/wp-content/themes/custom_theme/`;
+
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management
@@ -30,6 +32,10 @@ mix
         'process.env': JSON.stringify(process.env),
       }),
     ],
+    output: {
+      chunkFilename: 'dist/js/chunk-[name].js',
+      publicPath: THEME_URL,
+    },
   })
   .options({ processCssUrls: false })
   .sourceMaps()
