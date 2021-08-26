@@ -1,5 +1,5 @@
 <template>
-  <header>Hello {{ content }}!</header>
+  <header>Hello {{content}} {{ title }}!</header>
 </template>
 
 <script>
@@ -7,7 +7,7 @@ export default {
   name: 'v-header',
   props: ['content'],
   data() {
-    return {};
+    return {title: "Again"};
   },
 
 };
@@ -15,8 +15,10 @@ export default {
 
 <style scoped>
 header {
-  background-color: lightblue;
+  background-color: green;
+  color: white;
   padding: 2rem;
 }
 </style>
 
+ 

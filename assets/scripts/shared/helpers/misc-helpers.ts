@@ -1,7 +1,10 @@
-export const isInPage = (pageName) =>
-  document.body.classList.contains(`page-${pageName}`);
+interface IOptions {
+  pageName: string;
+  modules: [];
+}
 
-export const isObjectEmpty = (object) => Object.keys(object).length === 0;
+export const isInPage = (pageName: string) =>
+  document.body.classList.contains(`page-${pageName}`);
 
 export const getCurrentPage = () => {
   if (window.location.pathname === '/') {
@@ -11,7 +14,7 @@ export const getCurrentPage = () => {
   return window.location.pathname.replace(/\//g, '');
 };
 
-export const lazyLoadMapper = (options = []) => {
+export const lazyLoadMapper = (options: IOptions[] = []) => {
   if (!options || options.length === 0) {
     return;
   }

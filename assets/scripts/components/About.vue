@@ -1,18 +1,20 @@
 <template>
-  <h1>About Us content</h1>
+  <h3>About Us</h3>
 </template>
 
 <script>
 export default {
   name: 'v-about',
   data() {
-    return {};
+    return {
+      content: "Page"
+    };
   },
 };
 </script>
 
 <style scoped>
-  h1 {
+  h3{
     color: orange;
   }
 </style>

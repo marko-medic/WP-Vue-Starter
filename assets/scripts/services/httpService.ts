@@ -1,9 +1,11 @@
 /* eslint-disable */
 
-import axios from 'axios';
-import { getSessionToken } from './sessionService';
+import axios, { AxiosError } from 'axios';
+import { destroy, getSessionToken } from './sessionService';
 
 const URL = `${window.wp_data.root_url}/wp-json`;
+
+type Method = 'get' | 'post' | 'put' | 'patch' | 'options' | 'delete';
 
 axios.interceptors.response.use(
   (response) => {
@@ -18,7 +20,12 @@ axios.interceptors.response.use(
   }
 );
 
-const apiRequest = async (method, apiUrl, body, headers) => {
+const apiRequest = async (
+  method: Method,
+  apiUrl: string,
+  body: any,
+  headers: any
+) => {
   try {
     const apiToken = getSessionToken();
     const requestHeaders = !headers ? {} : headers;
@@ -37,7 +44,12 @@ const apiRequest = async (method, apiUrl, body, headers) => {
   }
 };
 
-const outsideRequest = async (method, url, body, headers) => {
+const outsideRequest = async (
+  method: Method,
+  url: string,
+  body?: any,
+  headers?: any
+) => {
   try {
     const requestHeaders = !headers ? {} : headers;
 
@@ -50,12 +62,12 @@ const outsideRequest = async (method, url, body, headers) => {
   }
 };
 
-const _handleError = (err) => {
+const _handleError = (err: AxiosError) => {
   let errorText = '';
   if (err && err.response) {
     if (err.response.status === 401 || err.response.status === 403) {
       // remove user data
-      // destroy();
+      destroy();
     }
     if (
       err.response.data &&
