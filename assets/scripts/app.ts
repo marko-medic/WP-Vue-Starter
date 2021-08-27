@@ -1,5 +1,6 @@
-import { init as homeInit } from './pages/home';
-import { loadVueComponents } from './shared/helpers/vue-helpers';
+import { init as navInit } from './shared/sections/nav';
+import { lazyLoadMapper } from './shared/helpers/misc-helpers';
+import { loadVueComponents } from './vue/main';
 
 declare global {
   interface Window {
@@ -8,9 +9,14 @@ declare global {
   }
 }
 
+loadVueComponents();
+
 console.log('Currently running on: ', window.wp_data.env?.MODE || 'Production');
 
-const { jQuery } = window;
-homeInit(jQuery);
+const { jQuery: $ } = window;
+navInit($);
 
-loadVueComponents();
+lazyLoadMapper([
+  { pageName: 'home', modules: ['pages/home'] },
+  { pageName: 'about', modules: ['pages/about'] },
+]);

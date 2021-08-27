@@ -1,14 +1,17 @@
 <template>
-  <h1>Front page content!</h1>
+  <p>Some basic info</p>
 </template>
 
 <script lang="ts">
 export default {
-  name: 'v-front',
+  name: 'v-info',
   data() {
     return {};
   },
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+	 p {color : purple}
+
+</style>

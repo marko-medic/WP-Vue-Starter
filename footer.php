@@ -12,11 +12,7 @@
 
 ?>
 
-
-
-
-</div> <!-- #content-wrapper -->
-	<v-footer :content="'<?php echo get_bloginfo(); ?>'"></v-footer>
+</v-app>
 </div><!-- #app -->
 
 <?php wp_footer(); ?>

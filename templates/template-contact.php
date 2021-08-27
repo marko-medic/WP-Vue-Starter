@@ -15,11 +15,9 @@ get_header(); ?>
 
     <div id="primary" class="content-area">
         <main id="main" class="site-main contact-template" role="main">
-                <h1>Contact us: </h1>
                 <?php while(have_posts()): the_post(); ?>
                        <?php the_title() ?> 
                        <?php the_content() ?> 
-
                 <?php endwhile; ?>
         </main><!-- #main -->
     </div><!-- #primary -->

@@ -23,7 +23,7 @@ get_header();
 	the_post();
 ?>
 
-<h1>About us: </h1>
+<h2>About us page: </h2>
 <v-about></v-about>
 <v-form></v-form>
 

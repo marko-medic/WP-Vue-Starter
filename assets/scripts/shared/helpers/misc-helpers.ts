@@ -1,6 +1,6 @@
 interface IOptions {
   pageName: string;
-  modules: [];
+  modules: any[];
 }
 
 export const isInPage = (pageName: string) =>
@@ -21,9 +21,10 @@ export const lazyLoadMapper = (options: IOptions[] = []) => {
   options.forEach((option) => {
     if (isInPage(option.pageName)) {
       option.modules.forEach((optionModule) => {
-        import(`../../${optionModule}.js`).then((module) => {
-          if (typeof module.default === 'function') {
-            module.default();
+        import(`../../${optionModule}.ts`).then((module) => {
+          if (typeof module.init === 'function') {
+            const { jQuery: $ } = window;
+            module.init($);
           }
         });
       });

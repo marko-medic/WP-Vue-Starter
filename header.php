@@ -23,10 +23,4 @@
 <?php wp_body_open(); ?>
 
 <div id="app" class="site">
-	<div id="header">
-		<v-header :content="'World'"></v-header>
-	</div>
-
-
-
-	<div id="content-wrapper" class="site-content">
+	<v-app>

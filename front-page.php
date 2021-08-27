@@ -16,16 +16,14 @@
 get_header();
 ?>
 
-
 <main id="primary" class="site-main">
 
 <?php while(have_posts()):
 	the_post();
 ?>
 
-<p>before front</p>
-<v-front></v-front>
-<p>after front</p>
+<v-front>
+</v-front>
 
 	<?php endwhile; ?>
 
