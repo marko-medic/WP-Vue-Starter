@@ -1,7 +1,7 @@
 <?php
 
 /**
- * OO-team functions and definitions
+ * custom_theme functions and definitions
  *
  * @link https://developer.wordpress.org/themes/basics/theme-functions/
  *
