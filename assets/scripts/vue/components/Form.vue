@@ -16,7 +16,7 @@
   }
 export default {
   name: 'v-form',
-  data(): IData {
+  data(): IData { 
     return {
       firstName: '',
       lastName: ''

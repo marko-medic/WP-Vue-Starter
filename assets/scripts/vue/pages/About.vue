@@ -7,15 +7,14 @@ export default {
   name: 'v-about',
   data() {
     return {
-      content: "Page"
+      content: 'Page',
     };
   },
 };
 </script>
 
 <style scoped>
-  h3{
-    color: orange;
-  }
+h3 {
+  color: orange;
+}
 </style>
-
