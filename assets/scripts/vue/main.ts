@@ -42,11 +42,16 @@ const getComponentsLazily = (componentList: IComponentList[] = []) => {
       return componentOption.inc.includes(getCurrentPage());
     })
     .reduce(async (acc, curr) => {
-      const importedModule = await import(`${curr.path}.vue`);
-      const cmp = await importedModule.default;
-      const awaitedAcc = (await acc) as any;
-      awaitedAcc[curr.componentName] = await cmp;
-      return awaitedAcc;
+      try {
+        const importedModule = await import(`${curr.path}.vue`);
+        const component = importedModule.default;
+        const awaitedAcc = (await acc) as any;
+        awaitedAcc[curr.componentName] = await component;
+        return awaitedAcc;
+      } catch (err) {
+        console.log('@import error', err);
+        throw err;
+      }
     }, {});
 
   return components;
